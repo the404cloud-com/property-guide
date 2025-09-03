@@ -338,25 +338,44 @@
     </div>
     
     <script>
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
-            // Let Netlify handle the form submission naturally
-            // The success message will be shown on a separate thank you page
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('leadForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending...';
+                    }
+                    const formData = new FormData(form);
+                    if (!formData.has('form-name')) {
+                        formData.append('form-name', form.getAttribute('name') || 'lead');
+                    }
+                    const encoded = new URLSearchParams(formData).toString();
+                    const postUrl = window.location.pathname || '/';
+                    fetch(postUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: encoded,
+                        mode: 'no-cors'
+                    }).catch(function() {
+                        // ignore network errors to still proceed
+                    }).finally(function() {
+                        window.location.href = form.getAttribute('action') || 'thank-you.html';
+                    });
+                });
+            }
             
-            // Optional: Track the submission for analytics
-            console.log('Form submitted to Netlify');
-            
-            // You can add Google Analytics tracking here if needed
-            // gtag('event', 'form_submit', { event_category: 'lead_generation' });
-        });
-        
-        // Add some interactive elements
-        document.querySelectorAll('input, select').forEach(field => {
-            field.addEventListener('focus', function() {
-                this.style.transform = 'scale(1.02)';
-            });
-            
-            field.addEventListener('blur', function() {
-                this.style.transform = 'scale(1)';
+            // Add some interactive elements
+            document.querySelectorAll('input, select').forEach(function(field) {
+                field.addEventListener('focus', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                field.addEventListener('blur', function() {
+                    this.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
