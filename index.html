@@ -362,7 +362,7 @@
                     }).catch(function() {
                         // ignore network errors to still proceed
                     }).finally(function() {
-                        window.location.href = form.getAttribute('action') || '/thank-you.html';
+                        location.replace(form.getAttribute('action') || '/thank-you.html');
                     });
                 });
             }
