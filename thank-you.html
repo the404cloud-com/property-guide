@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Your Property Guide is Coming!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thank-you-container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 20px;
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #28a745;
+            position: relative;
+            margin: 0 auto 30px auto;
+            animation: checkmark-bounce 0.6s ease-in-out;
+        }
+        
+        .checkmark:after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        @keyframes checkmark-bounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .main-message {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .steps {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .steps h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .step-text strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            background: #e8f4f8;
+            border: 2px solid #17a2b8;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .contact-info h3 {
+            color: #17a2b8;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            margin: 30px 0;
+        }
+        
+        .social-links h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .facebook {
+            background: #1877f2;
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .back-link {
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 40px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+        
+        .urgent-note {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .urgent-note strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="checkmark"></div>
+        
+        <h1>Thank You!</h1>
+        
+        <div class="main-message">
+            <p><strong>Your FREE Property Selling Guide is on its way to your inbox!</strong></p>
+            <p>We've successfully received your information and you should receive your comprehensive property selling guide within the next few minutes.</p>
+        </div>
+        
+        <div class="urgent-note">
+            <strong>⚠️ Important:</strong> Please check your spam/junk folder if you don't see the email in your inbox within 10 minutes.
+        </div>
+        
+        <div class="steps">
+            <h3>What Happens Next?</h3>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <strong>Check Your Email (Next 5-10 Minutes)</strong>
+                    Look for an email from us with your FREE Property Selling Guide PDF attachment.
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <strong>Read the Guide</strong>
+                    Discover the insider secrets that could add $30,000+ to your property sale.
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <strong>Expert Contact (Within 24 Hours)</strong>
+                    A local property expert familiar with your area may reach out with personalized tips and advice.
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>📞 Need Immediate Help?</h3>
+            <p>If you have urgent questions about selling your property, our local experts are ready to help:</p>
+            <p><strong>Phone:</strong> <a href="tel:1300-XXX-XXX">1300 XXX XXX</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+        </div>
+        
+        <div class="social-links">
+            <h3>Stay Connected for More Tips</h3>
+            <div class="social-buttons">
+                <a href="#" class="social-btn facebook">📘 Follow on Facebook</a>
+                <a href="#" class="social-btn instagram">📸 Follow on Instagram</a>
+            </div>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Get daily property tips and market updates</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        // Optional: Track the thank you page view for analytics
+        console.log('Thank you page loaded');
+        
+        // You can add Google Analytics event tracking here
+        // gtag('event', 'conversion', { event_category: 'lead_generation' });
+        
+        // Optional: Auto-refresh to check email after 5 minutes
+        setTimeout(function() {
+            if (confirm('It\'s been 5 minutes. Would you like to check if the email arrived? Click OK to open your email.')) {
+                window.open('https://mail.google.com', '_blank');
+            }
+        }, 300000); // 5 minutes
+    </script>
+</body>
+</html>
