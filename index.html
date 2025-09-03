@@ -335,32 +335,14 @@
     
     <script>
         document.getElementById('leadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Let Netlify handle the form submission naturally
+            // The success message will be shown on a separate thank you page
             
-            // Collect form data
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                timeframe: document.getElementById('timeframe').value,
-                timestamp: new Date().toISOString(),
-                source: 'property-guide-landing'
-            };
+            // Optional: Track the submission for analytics
+            console.log('Form submitted to Netlify');
             
-            // Here you would normally send the data to your backend
-            console.log('Lead captured:', formData);
-            
-            // Show success message
-            document.querySelector('.form-section').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // In a real implementation, you would:
-            // 1. Send data to your server/database
-            // 2. Send the ebook via email
-            // 3. Notify your real estate agent partners
-            // 4. Set up follow-up sequences
+            // You can add Google Analytics tracking here if needed
+            // gtag('event', 'form_submit', { event_category: 'lead_generation' });
         });
         
         // Add some interactive elements
