@@ -277,7 +277,11 @@
                 <h2>Get Your FREE Guide Now!</h2>
                 <p style="text-align: center; margin-bottom: 25px; color: #666;">Enter your details below and we'll send you the complete guide instantly</p>
                 
-                <form id="leadForm">
+                <form id="leadForm" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-honeypot="bot-field" action="/thank-you.html">
+                    <input type="hidden" name="form-name" value="lead">
+                    <p style="display:none">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" autocomplete="off"></label>
+                    </p>
                     <div class="form-group">
                         <label for="firstName">First Name *</label>
                         <input type="text" id="firstName" name="firstName" required>
@@ -334,27 +338,46 @@
     </div>
     
     <script>
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
-            // Let Netlify handle the form submission naturally
-            // The success message will be shown on a separate thank you page
+        (function() {
+            const form = document.getElementById('leadForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending...';
+                    }
+                    const formData = new FormData(form);
+                    if (!formData.has('form-name')) {
+                        formData.append('form-name', form.getAttribute('name') || 'lead');
+                    }
+                    const encoded = new URLSearchParams(formData).toString();
+                    const postUrl = '/';
+                    fetch(postUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: encoded,
+                        mode: 'no-cors'
+                    }).catch(function() {
+                        // ignore network errors to still proceed
+                    }).finally(function() {
+                        location.replace(form.getAttribute('action') || '/thank-you.html');
+                    });
+                });
+            }
             
-            // Optional: Track the submission for analytics
-            console.log('Form submitted to Netlify');
-            
-            // You can add Google Analytics tracking here if needed
-            // gtag('event', 'form_submit', { event_category: 'lead_generation' });
-        });
-        
-        // Add some interactive elements
-        document.querySelectorAll('input, select').forEach(field => {
-            field.addEventListener('focus', function() {
-                this.style.transform = 'scale(1.02)';
+            // Add some interactive elements
+            document.querySelectorAll('input, select').forEach(function(field) {
+                field.addEventListener('focus', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                field.addEventListener('blur', function() {
+                    this.style.transform = 'scale(1)';
+                });
             });
-            
-            field.addEventListener('blur', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
+        })();
     </script>
 </body>
 </html>
